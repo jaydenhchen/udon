@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>桜うどん — Sakura Udon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Press+Start+2P&family=Shippori+Mincho:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="stage">
+      <canvas id="game" width="320" height="288"></canvas>
+      <div id="hud">
+        <div id="hud-left">
+          <div id="yen">¥0</div>
+          <div id="hunger" title="Hunger"></div>
+          <div id="guests" title="Guests">店 閉</div>
+        </div>
+        <div id="prompt" class="hidden"></div>
+        <button id="btnMute" type="button" aria-label="Mute">♪</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="title" class="overlay">
+    <div class="title-petals" aria-hidden="true"></div>
+    <div class="title-card">
+      <p class="title-season">春 · HANAMI</p>
+      <h1>桜うどん</h1>
+      <p class="title-en">Sakura Udon House</p>
+      <p class="title-tag">Taste a bowl. Earn yen. Serve guests under the red gates.</p>
+      <button id="btnStart" type="button">はじめる · Begin</button>
+      <ul class="title-controls">
+        <li><kbd>WASD</kbd> / arrows move</li>
+        <li><kbd>E</kbd> / <kbd>Space</kbd> talk, cook, buy</li>
+        <li><kbd>I</kbd> bag · <kbd>Esc</kbd> back</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="dialog" class="overlay hidden">
+    <div class="dialog-box">
+      <div class="dialog-name" id="dialogName"></div>
+      <p id="dialogText"></p>
+      <span class="dialog-caret">▼</span>
+    </div>
+  </div>
+
+  <div id="shop" class="overlay hidden">
+    <div class="panel shop-panel">
+      <header>
+        <h2>市場 · Market</h2>
+        <p class="panel-sub">Irasshaimase. Spring ingredients, packed this morning.</p>
+      </header>
+      <div class="shop-body">
+        <div id="shopList" class="item-list"></div>
+        <aside class="shop-aside">
+          <canvas id="shopPreview" width="220" height="180"></canvas>
+          <p id="shopDesc"></p>
+          <p id="shopYen" class="yen-line"></p>
+          <div class="row-btns">
+            <button id="btnBuy" type="button">Buy · 買う</button>
+            <button id="btnShopLeave" type="button" class="ghost">Leave</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <div id="bag" class="overlay hidden">
+    <div class="panel bag-panel">
+      <header>
+        <h2>風呂敷 · Bag</h2>
+      </header>
+      <div id="bagList" class="item-list"></div>
+      <button id="btnBagLeave" type="button" class="ghost">Close</button>
+    </div>
+  </div>
+
+  <div id="kitchen" class="overlay hidden">
+    <div class="kitchen-wrap">
+      <header class="kitchen-head">
+        <h2>台所 · Kitchen</h2>
+        <p class="special">Today's special: <strong>冷やし肉辛うどん</strong> — cold niku spicy udon</p>
+      </header>
+      <div class="kitchen-layout">
+        <div class="ing-col">
+          <h3>Ingredients</h3>
+          <div id="ingList" class="ing-grid"></div>
+        </div>
+        <div class="bowl-col">
+          <canvas id="bowl" width="560" height="560"></canvas>
+          <div id="recipeName" class="recipe-name">Empty bowl</div>
+        </div>
+        <div class="ctrl-col">
+          <h3>Fire &amp; ice</h3>
+          <div class="temp-toggle">
+            <button type="button" id="btnHot" data-temp="hot">熱 · Hot</button>
+            <button type="button" id="btnCold" data-temp="cold">冷 · Cold</button>
+          </div>
+          <p class="hint">Cold + noodles + beef + chili is the special. Taste it, then carry bowls to guests.</p>
+          <button type="button" id="btnServe" class="serve">盛る · Plate &amp; taste</button>
+          <button type="button" id="btnKitchenLeave" class="ghost">Leave kitchen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="eating" class="overlay hidden">
+    <div class="eat-wrap">
+      <p id="eatBanner" class="eat-banner">いただきます</p>
+      <canvas id="eatBowl" width="560" height="560"></canvas>
+      <p id="eatFlavor" class="eat-flavor"></p>
+      <p id="eatPay" class="eat-pay"></p>
+      <p id="eatHint" class="eat-hint">Press <kbd>Space</kbd> to slurp</p>
+    </div>
+  </div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/sprites.js"></script>
+  <script src="js/maps.js"></script>
+  <script src="js/udon.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
